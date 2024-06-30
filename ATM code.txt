@@ -1,0 +1,109 @@
+def withdraw():
+    print("enter amount")
+    amount=int(input())
+    print("enter pinnum")                    
+    pinnum=int(input())
+    if(pinnum==pin[user.index(username)]):
+        if(amount>balance[user.index(username)]):
+            print("insufficient amount")
+        else:
+            balance[user.index(username)]=balance[user.index(username)]-amount
+            print("collect your amount")
+            print("available balance",balance[user.index(username)])
+    else:
+        print("end")
+def deposit():
+    print("enter amount")
+    amount=int(input())
+    print("enter pinnum")
+    pinnum=int(input())
+    if(pinnum==pin[user.index(username)]):
+        balance[user.index(username)]=balance[user.index(username)]+amount
+        print("available balance",balance[user.index(username)])
+        print("deposit successfully")
+    else:
+        print("end")
+def accbalance():
+    print("enter pinnum")
+    pinnum=int(input())
+    if(pinnum==pin[user.index(username)]):
+        print("available balance",balance[user.index(username)])
+    else:
+        print("end")
+def changepass():
+    print("enter current password")
+    passcode=input()
+    if(passcode!=passwd[user.index(username)]):
+        print("end")
+    else:
+        print("enter new password")
+        newpasswd=input()
+        print("confirm new password")
+        confirm=input()
+        while(1):
+            if(newpasswd==confirm):
+                passwd[user.index(username)]=newpasswd
+                print("successfully changed")
+                break
+            else:
+                print("renenter new password")
+                newpasswd=input()
+                print("confirm new password")
+                confirm=input()
+                    
+def ATM():
+    if(username not in user):
+        print("user doesnt exist")
+        print("end")
+    else:
+        print("enter password")
+        password=input()
+        while(1):
+            if (password !=passwd[user.index(username)]):
+                print("incorrect password 2 attempts left")
+                password=input()
+                if (password !=passwd[user.index(username)]):
+                    print("incorrect password 1 attempt left")
+                    password=input()
+                    if (password !=passwd[user.index(username)]):
+                        print("incorrect password acc blocked")
+                        print("end")
+                        break
+                    else:
+                        continue
+                else:
+                    continue
+            else:
+                print("1.withdraw")
+                print("2.deposit")
+                print("3.acc balance")
+                print("4.change password")
+                print("enter your choice:")
+                choice=int(input())
+                while(1):
+                    if (choice not in [1,2,3,4]):
+                        print("wrong choice select again")
+                        choice=int(input())                    
+                    elif(choice==1):
+                        withdraw()
+                        exit()
+                    elif(choice==2):
+                        deposit()
+                        exit()
+                    elif(choice==3):
+                        accbalance()
+                        exit()                        
+                    elif(choice==4):
+                        changepass()
+                        exit()
+                    else:
+                        pass
+                        
+user=['anu','jyo','hari']
+passwd=['anu12','jyo12','hari12']
+pin=[1011,2011,3011]
+balance=[5000,6000,7000]
+print("enter username:")
+username=str(input())
+a=ATM()
+                
